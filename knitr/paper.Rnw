@@ -12,12 +12,14 @@
 \textbf{Article title}: Something tremendously clever
 
 <<include=FALSE>>=
+library(xtable)
 x <- rnorm(100)
 y <- x * 2 + rnorm(100,sd=.2)
 data <- data.frame(y, x)
 @ 
 
 <<results="asis",echo=FALSE>>=
+model <- lm(y ~ x, data=data)
 print(xtable(summary(model)))
 @ 
 
