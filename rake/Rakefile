@@ -1,0 +1,30 @@
+desc "Load and prepare data"
+task :build_workspace do
+  `Rscript workspace.R`
+end
+
+desc "Run statistics and make plots"
+task :run_stats do
+  `Rscript model.R`
+end
+
+desc "Build manuscript"
+task :build_manuscript do
+  `pdflatex paper.tex`
+  `pdflatex paper.tex`
+end
+
+desc "Generate all results and manuscript"
+task :do_everything => [:build_workspace, :run_stats, :build_manuscript] do 
+  puts "Analysis reproduced!"
+end
+
+desc "Removes all temporary files"
+task :clean do
+  Dir["*"].each do |file|
+    unless ["paper.tex","model.R","workspace.R","Rakefile"].include? file then FileUtils.rm(file) end
+  end
+  puts "Factory fresh"
+end
+
+task :default => :do_everything

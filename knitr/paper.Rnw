@@ -1,0 +1,39 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\renewcommand\thesection{\arabic{section}}
+\usepackage[parfill]{parskip}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[left=0.75in,right=0.75in,top=0.75in,bottom=0.75in]{geometry}
+
+
+\begin{document}
+\section*{Title page}
+\textbf{Article title}: Something tremendously clever
+
+<<include=FALSE>>=
+x <- rnorm(100)
+y <- x * 2 + rnorm(100,sd=.2)
+data <- data.frame(y, x)
+@ 
+
+<<results="asis",echo=FALSE>>=
+print(xtable(summary(model)))
+@ 
+
+\begin{figure}[h!]
+  <<echo=FALSE>>=
+  with(data, plot(y ~ x))
+  @
+  \caption{Behold the power of my correlation}
+  \label{ploty}
+\end{figure}
+
+I love figure \ref{ploty}. I also love reporting means, like this:
+\Sexpr{mean(data$y)}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

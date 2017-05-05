@@ -1,0 +1,28 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\renewcommand\thesection{\arabic{section}}
+\usepackage[parfill]{parskip}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[left=0.75in,right=0.75in,top=0.75in,bottom=0.75in]{geometry}
+
+
+\begin{document}
+\section*{Title page}
+\textbf{Article title}: Something tremendously clever
+
+\input{table.tex}
+
+\begin{figure}[h!]
+  \includegraphics[width=.8\textwidth]{plot}
+  \caption{Behold the power of my correlation}
+  \label{ploty}
+\end{figure}
+
+I love figure \ref{ploty}.
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
